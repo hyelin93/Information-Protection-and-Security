@@ -83,12 +83,8 @@ AI 브라우저 에이전트를 노리는 간접 프롬프트 인젝션을 직�
 
 ## 동작 방식
 
-```
-[데모 웹페이지] ──> [에이전트] ──> [Prompt Firewall] ──> [LLM]
-                                     │
-                                     ├──> 감사 로그 (JSON Lines)
-                                     └──> 로컬 대시보드
-```
+<img width="1200" height="640" alt="image" src="https://github.com/user-attachments/assets/d85ac7c4-9ba0-4b80-9c5c-bb4717b99b43" />
+
 
 1. 에이전트가 페이지를 가져오면 바로 LLM에 넘기지 않고 방화벽의 `inspect()`를 먼저 호출한다
 2. 방화벽은 HTML에서 보이는 텍스트, 숨김 요소, 주석, 이미지 alt를 조각 단위로 따로 꺼낸다
