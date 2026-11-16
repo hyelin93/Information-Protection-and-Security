@@ -55,8 +55,8 @@ AI 브라우저 에이전트를 노리는 간접 프롬프트 인젝션을 직�
 ![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup-4B8BBE?style=for-the-badge)
 ![JSON Lines](https://img.shields.io/badge/JSON%20Lines-000000?style=for-the-badge&logo=json&logoColor=white)
 ![Pytest](https://img.shields.io/badge/pytest-%23ffffff.svg?style=for-the-badge&logo=pytest&logoColor=2f9fe3)
-
-<!-- LLM API 제공자가 결정되면 뱃지 추가 (OpenAI, Anthropic, Gemini 중 하나) -->
+![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
+![Qwen3 8B](https://img.shields.io/badge/Qwen3%208B-615CED?style=for-the-badge)
 
 ### 협업
 
@@ -73,9 +73,11 @@ AI 브라우저 에이전트를 노리는 간접 프롬프트 인젝션을 직�
 | 화면 | Jinja2, HTML/CSS | 데모 페이지, 감사 로그 대시보드 |
 | HTML 분석 | BeautifulSoup, 정규식 | 숨김 요소, 주석, alt 추출과 패턴 탐지 |
 | 로그 | JSON Lines | 감사 로그 |
-| 에이전트 | LLM API + 도구 호출 루프 | 페이지 요약, 가짜 전송 |
+| 에이전트 | Ollama + Qwen3 8B (`qwen3:8b`) | 페이지 요약, 도구 호출(가짜 전송). 로컬 실행, temperature 0 |
 | 테스트 | pytest | 방화벽 단위 테스트 |
 | 협업 | GitHub, Notion, Google Sheets | 코드, 회의록, 요구사항 명세서와 WBS |
+
+에이전트 모델은 Ollama로 로컬에서 돌리는 Qwen3 8B로 정했다. 작은 모델이라 숨은 명령에 잘 넘어가서 방화벽 OFF 공격 재현이 안정적이고, 도구 호출을 지원하고, 비용과 호출 횟수 제한이 없고, 데이터가 컴퓨터 밖으로 나가지 않는다. 최신 클라우드 모델(Gemini Flash 무료 티어)과의 성공률 비교는 시간이 남으면 하는 선택 과제로 둔다.
 
 <br>
 
@@ -156,8 +158,11 @@ python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-cp .env.example .env               # LLM API 키 입력
+cp .env.example .env
 git config commit.template .gitmessage
+
+# 에이전트용 로컬 LLM (Ollama 설치 후)
+ollama pull qwen3:8b
 ```
 
 <br>
