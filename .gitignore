@@ -1,0 +1,24 @@
+# 비밀값: 절대 커밋하지 않는다 (NFR-02)
+.env
+.env.*
+!.env.example
+
+# 실행 로그와 가짜 수신 기록
+logs/
+*.jsonl
+!datasets/**/*.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 에디터, OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
